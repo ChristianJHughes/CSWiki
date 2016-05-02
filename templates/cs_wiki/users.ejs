@@ -1,0 +1,15 @@
+<%- include('../layout/header', {title: "Users"}) %>
+<% title = "Users" %>
+<a href="/">CS Wiki Home Page</a>
+<h1><%= title %></h1>
+<h3>All available Wikis</h3>
+<ul>
+  <% users.forEach(function(user) { %>
+    <%- include('_users', {user: user}) %>
+  <% }); %>
+</ul>
+<hr />
+<p>
+  Welcome, administrator. This page is not visible to non-admins.
+</p>
+<%- include('../layout/footer') %>

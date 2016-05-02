@@ -1,0 +1,15 @@
+<%- include('../layout/header', {title: "Editor"}) %>
+<h1>Content Page Editor</h1>
+<form action="/edit/<%= page.pageID %>" method="post">
+    <div>
+        <label>Wiki Content:</label><br />
+        <textarea name="content" rows="15" cols="100"><%= page.main_content_markdown %></textarea>
+    </div>
+    <div>
+        <input type="submit" />
+    </div>
+</form>
+<p>
+  <em>Feel free to write or edit content using Markdown language. It will be converted to html on the page.</em>
+</p>
+<%- include('../layout/footer') %>

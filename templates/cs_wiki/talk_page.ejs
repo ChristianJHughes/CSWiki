@@ -1,0 +1,24 @@
+<%- include('../layout/header', {title: page.page_name + " Talk Page"}) %>
+<% title = page.page_name + " - Talk Page" %>
+<a href="/">CS Wiki Home Page</a><br /><br />
+<% if (user.username == "Guest") { %>
+  <%- '<a href="/login">Log in</a> <em>- Note: You must be logged in and not blocked to add comments to the talk page.</em>' %>
+<% } else { %>
+  <%= "You are logged in as " + user.username + " " %>
+  <%- '<a href="/logout">(Log out)</a>' %>
+<% }; %>
+<h1><%= title %></h1>
+<h3><a href="/wiki/<%= page.pageID %>" >Content Page</a> || Talk Page</h3>
+<div><hr />
+  <% comments.forEach(function(comment) { %>
+    <%- include('_comments', {comment: comment}) %>
+    <% }); %>
+</div>
+<% if (user.username != "Guest") { %>
+  <% if (user.isBanned != 1) { %>
+    <%- include('./_addComment', {page: page}) %>
+<% } else { %>
+  <%= "YOU ARE BLOCKED AND CANNOT ADD COMMENTS" %>
+  <% } %>
+<% }; %>
+<%- include('../layout/footer') %>

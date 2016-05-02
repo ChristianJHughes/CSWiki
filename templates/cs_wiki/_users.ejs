@@ -1,0 +1,8 @@
+<li>
+    <%= user.username  %>
+    <% if (user.isBanned == 1) { %>
+      <%- include('_unban', {user: user}) %>
+    <% } else { %>
+      <%- include('_ban', {user: user}) %>
+    <% }; %>
+</li>

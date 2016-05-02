@@ -1,0 +1,16 @@
+<%- include('../layout/header', {title: "CS Wiki"}) %>
+<% title = "CS Wiki" %>
+<% if (user.username == "Guest") { %>
+  <%- '<a href="/login">Log in</a>' %>
+<% } else { %>
+  <%= "You are logged in as " + user.username + " " %>
+  <%- '<a href="/logout">(Log out)</a>' %>
+<% }; %>
+<h1>The Almighty Computer Science Wiki</h1>
+<h3>All available Wikis</h3>
+<ul>
+  <% pages.forEach(function(page) { %>
+    <%- include('_pages', {page: page}) %>
+  <% }); %>
+</ul>
+<%- include('../layout/footer') %>

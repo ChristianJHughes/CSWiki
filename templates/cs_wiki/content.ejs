@@ -1,0 +1,23 @@
+<%- include('../layout/header', {title: page.page_name}) %>
+<% title = page.page_name %>
+<a href="/">CS Wiki Home Page</a><br /><br />
+<% if (user.username == "Guest") { %>
+  <%- '<a href="/login">Log in</a> <em>- Note: You must be logged in and not blocked for editing functionality to appear.</em>' %>
+<% } else { %>
+  <%= "You are logged in as " + user.username + " " %>
+  <%- '<a href="/logout">(Log out)</a>' %>
+<% }; %>
+<h1><%= title + " - Content Page" %></h1>
+<h3>Content Page || <a href="/wiki/talk_page/<%= page.pageID %>" >Talk Page</a></h3>
+<hr />
+<div id="markdownDiv">
+  <%- markdown %>
+</div>
+<% if (user.username != "Guest") { %>
+  <% if (user.isBanned != 1) { %>
+    <%- include('./_edit', {pageID: page.pageID}) %>
+<% } else { %>
+  <%= "YOU ARE BLOCKED AND CANNOT MAKE EDITS" %>
+  <% } %>
+<% }; %>
+<%- include('../layout/footer') %>
